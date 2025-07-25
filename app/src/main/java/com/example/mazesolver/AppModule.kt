@@ -1,6 +1,9 @@
 package com.example.mazesolver
 
+import android.os.Build.VERSION.SDK_INT
 import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.request.CachePolicy
 import com.example.mazesolver.core.data.network.HttpClientFactory
 import com.example.mazesolver.core.data.parser.GsonFactory
@@ -31,6 +34,15 @@ val appModule = module {
     single {
         ImageLoader.Builder(androidContext())
             .crossfade(true)
+            .components {
+                add(
+                    if (SDK_INT >= 28) {
+                        ImageDecoderDecoder.Factory()
+                    } else {
+                        GifDecoder.Factory()
+                    }
+                )
+            }
             .networkCachePolicy(CachePolicy.ENABLED)
             .diskCachePolicy(CachePolicy.ENABLED)
             .memoryCachePolicy(CachePolicy.ENABLED)
