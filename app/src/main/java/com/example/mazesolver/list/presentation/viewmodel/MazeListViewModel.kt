@@ -21,8 +21,6 @@ class MazeListViewModel(private val repository: MazeListRepository) : ViewModel(
     )
 
     private fun loadMazeList() {
-        Log.v("hey", "hey I'm here at loadMazeList")
-        println("hey I'm here at loadMazeList")
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -32,21 +30,15 @@ class MazeListViewModel(private val repository: MazeListRepository) : ViewModel(
 
             runCatching {
                 repository.fetchMazes().onSuccess { dto ->
-                    Log.v("hey", "hey I'm here at onSuccess")
-                    println("hey I'm here at onSuccess")
                     _state.update {
                         it.copy(
                             isLoading = false, mazes = dto?.list ?: emptyList()
                         )
                     }
                 }.onError { error ->
-                    Log.v("hey", "hey I'm here at onError")
-                    println("hey I'm here at onError")
                     _state.update { it.copy(isLoading = false, error = error) }
                 }
             }.onFailure {
-                Log.v("hey", "hey I'm here at onFailure")
-                println("hey I'm here at onFailure")
                 _state.update { it.copy(isLoading = false, error = it.error) }
             }
         }
