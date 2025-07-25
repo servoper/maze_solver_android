@@ -40,6 +40,7 @@ android {
     }
 }
 
+val mockitoAgent = configurations.create("mockitoAgent")
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -53,7 +54,7 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
-    implementation (libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
 
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
@@ -66,14 +67,25 @@ dependencies {
     implementation(libs.koin.androidx.compose)
 
 
-    implementation (libs.coil.compose)
-    implementation (libs.coil.gif)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+
+    testImplementation(libs.mockito.core)
+    mockitoAgent(libs.mockito.core) { isTransitive = false }
+
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test.junit4)
 
     testImplementation(libs.junit)
 
+    testImplementation(libs.robolectric)
+
+    testImplementation(libs.androidx.core.testing)
+
+    androidTestImplementation(libs.androidx.core.testing)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
