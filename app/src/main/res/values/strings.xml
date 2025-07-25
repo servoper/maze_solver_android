@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Maze Solver</string>
+    <string name="loading">Loading…</string>
+    <string name="loading_mazes">Finding Mazes to solve…</string>
+    <string name="solving">I\'ll solve that!\nJust give me some time ;)</string>
+    <string name="solved_maze_description">Solved Maze %1$s</string>
+    <string name="cant_solve_label">Seems like I cannot resolve this today :(\nDon\'t give up and come back tomorrow!\nI\'ll find a way!</string>
+    <string name="no_mazes_label">Seems like I can take a break!\nIf you find some mazes to solve,\nyou can find me on the beach ;)</string>
+    <string name="something_went_wrong">Something went wrong!\nTry again later I might now the answer then!</string>
+</resources>
